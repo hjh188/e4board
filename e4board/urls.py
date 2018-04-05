@@ -16,6 +16,31 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
+from django.conf import settings
+
+from eweb.views import (
+    WebSourceViewSet,
+)
+
+from rest_framework.authtoken import views
+
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^$', WebSourceViewSet.as_view({'get':'index'})),
+    url(r'^eboard/admin/', include(admin.site.urls)),
+    url(r'^eboard/api-token-auth/', views.obtain_auth_token),
 ]
+
+urlpatterns.append(url(r'^eboard/', include('rest_framework.urls', namespace='rest_framework')))
+urlpatterns.append(url(r'^eboard/docs/', include('rest_framework_swagger.urls')))
+urlpatterns.append(url(r'^eboard/user/', include('euser.urls')))
+urlpatterns.append(url(r'^eboard/web/', include('eweb.urls')))
+urlpatterns.append(url(r'^eboard/app/', include('eapp.urls')))
+urlpatterns.append(url(r'^eboard/file/', include('efile.urls')))
+urlpatterns.append(url(r'^eboard/board/', include('eboard.urls')))
+
+if settings.DEBUG:
+    from django.conf.urls.static import static
+
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
