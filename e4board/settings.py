@@ -42,10 +42,11 @@ INSTALLED_APPS = (
     'django_crontab',
     'django_extensions',
     'compressor',
+    'eboard',
     'euser',
     'eweb',
     'efile',
-    'eboard',
+    'eapp',
 )
 
 CRONJOBS = [
@@ -89,7 +90,7 @@ WSGI_APPLICATION = 'e4board.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': '',
+        'NAME': 'e4board',
         'USER': '',
         'PASSWORD': '',
         'HOST': '',
