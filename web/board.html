@@ -1,0 +1,120 @@
+  {% load convert %}
+  {% if dashboards %}
+<div class="ui {{ dashboard_name }} dashboard_wrapper">
+  <div class="ui grid {{ dashboard_name }} dashboard_header">
+  </div>
+  <div class="ui grid {{ dashboard_name }} dashboard_toolbar">
+  </div>
+
+  <div class="ui dashboard grid {{ sortable }} {{ dashboard_name }} dashboard_content" name="{{ dashboard_name }}">
+    <div class="ui dashboard input {{ dashboard_name }}" style="display:none;">
+      <input class="{{ dashboard_name }} dashboard" type="text" placeholder="Search...">
+    </div>
+  {% else %}
+<div class="ui dashboard_wrapper">
+  <div class="ui grid dashboard_header">
+  </div>
+  <div class="ui grid dashboard_toolbar">
+  </div>
+
+  <div class="ui dashboard grid {{ sortable }} dashboard_content">
+
+  {% endif %}
+
+    {% for d in dashboards %}
+      {% if d.height == "0" %}
+      <div class="{{ d.size }} dashboard column" resize="{{ d.enable_resize }}" name="{{ d.name }}" pre_size="{{ d.pre_size }}" size="{{ d.size }}" url="{{ d.url|safe }}" id="{{ d.id }}" js_template="{{ d.js_template }}" refresh="{{ d.refresh }}" pre_height="{{ d.pre_height }}" current_height="{{ d.height }}" state="{{ d.state }}" fixed_height="no" b_type="{{ d.type }}" style="display:none;">
+      {% else %}
+      <div class="{{ d.size }} dashboard column" resize="{{ d.enable_resize }}" name="{{ d.name }}" pre_size="{{ d.pre_size }}" size="{{ d.size }}" url="{{ d.url|safe }}" id="{{ d.id }}" js_template="{{ d.js_template }}" refresh="{{ d.refresh }}" style="height: {{ d.height }}px;display:none;" pre_height="{{ d.pre_height }}" current_height="{{ d.height }}" state="{{ d.state }}" b_type="{{ d.type }}">
+      {% endif %}
+        {% if d.height == "0" %}
+        <div class="ui basic segments">
+        {% else %}
+        <div class="ui basic segments" style="height: {{ d.height | convert_segments_height }}px;">
+        {% endif %}
+        <div class="board_progress"></div>
+        {% if d.color == "white" %}
+          <div class="ui clearing segment board_header" color="{{ d.color }}">
+        {% else %}
+          <div class="ui {{ d.color }} inverted clearing segment board_header" color="{{ d.color }}">
+        {% endif %}
+          <h5 class="ui left floated header">
+              <div class="content">{{ d.title }}</div>
+          </h5>
+        {% if d.enable_header_menu == "True" %}
+          <h5 class="ui right floated header hidden">
+            <div class="ui top right pointing board dropdown">
+              <i class="mini dropdown link icon" style="margin:0;"></i>
+              <div class="menu">
+                <!--{% if d.size == "eight wide" %}
+                  <div class="item size">Maximize</div>
+                {% else %}
+                  <div class="item size">Minimize</div>
+                {% endif %}-->
+                {% if d.state == "none" %}
+                  <div class="item toggle">Expand</div>
+                {% else %}
+                  <div class="item toggle">Collapse</div>
+                {% endif %}
+                <div class="item color">Color
+                  <i class="dropdown icon"></i>
+                  <div class="menu">
+                    <div class="item" color="white" style="padding:2px!important;margin:0!important;"><a class="ui empty circular label"></a></div>
+                    <div class="item" color="red" style="padding:2px!important;margin:0!important;"><a class="ui red empty circular label"></a></div>
+                    <div class="item" color="orange" style="padding:2px!important;margin:0!important;"><a class="ui orange empty circular label"></a></div>
+                    <div class="item" color="yellow" style="padding:2px!important;margin:0!important;"><a class="ui yellow empty circular label"></a></div>
+                    <div class="item" color="olive" style="padding:2px!important;margin:0!important;"><a class="ui olive empty circular label"></a></div>
+                    <div class="item" color="green" style="padding:2px!important;margin:0!important;"><a class="ui green empty circular label"></a></div>
+                    <div class="item" color="teal" style="padding:2px!important;margin:0!important;"><a class="ui teal empty circular label"></a></div>
+                    <div class="item" color="blue" style="padding:2px!important;margin:0!important;"><a class="ui blue empty circular label"></a></div>
+                    <div class="item" color="violet" style="padding:2px!important;margin:0!important;"><a class="ui violet empty circular label"></a></div>
+                    <div class="item" color="purple" style="padding:2px!important;margin:0!important;"><a class="ui purple empty circular label"></a></div>
+                    <div class="item" color="pink" style="padding:2px!important;margin:0!important;"><a class="ui pink empty circular label"></a></div>
+                    <div class="item" color="brown" style="padding:2px!important;margin:0!important;"><a class="ui brown empty circular label"></a></div>
+                    <div class="item" color="grey" style="padding:2px!important;margin:0!important;"><a class="ui grey empty circular label"></a></div>
+                    <div class="item" color="black" style="padding:2px!important;margin:0!important;"><a class="ui black empty circular label"></a></div>
+                  </div>
+                </div>
+                <div class="item size" data-variation="basic" data-position="right center">Size<i class="dropdown icon"></i></div>
+                <div class="ui fluid popup top left transition hidden" style="height: 80px;">
+                    <div class="ui small blue size progress" data-value="{{ d.size | convert_wide_size }}" data-total="16" style="width: 200px;">
+                    <div class="bar"><div class="progress"></div></div>
+                    <div class="label">
+                      <div class="ui icon mini buttons">
+                        <div class="decrement ui mini basic red button icon"><i class="minus icon"></i></div>
+                        <div class="increment ui mini basic green button icon"><i class="plus icon"></i></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- end for size -->
+
+              </div><!-- end for top menu -->
+            </div>
+          </h5><!-- end for dropdown menu -->
+          {% if d.size != "sixteen wide" %}
+          <h5 class="ui right floated header hidden"><div><i class="show resize horizontal link icon" style="float:right;margin:0;"></i></div></h5>
+          {% else %}
+          <h5 class="ui right floated header hidden"><div><i class="show resize minus link icon" style="float:right;margin:0;"></i></div></h5>
+          {% endif %}
+          <h5 class="ui right floated header hidden"><div><i class="bscreen expand link icon" style="float:right;margin:0;"></i></div></h5>
+          <h5 class="ui right floated header hidden"><div><i class="refresh link icon" style="float:right;margin:0;"></i></div></h5>
+        {% endif %}
+        </div>
+        {% if d.height == "0" %}
+        <div class="ui segment board_content {{ d.name }}">
+        {% else %}
+        <div class="ui segment board_content {{ d.name }}" style="display:{{ d.state }};height: {{ d.height | convert_board_content_height:d.footer_height }}px;">
+        {% endif %}
+          <div class="ui active inverted dimmer">
+            <div class="ui mini text loader">Loading data...</div>
+          </div>
+        </div>
+        <div class="ui segment board_footer {{ d.name }}" footer_height="{{d.footer_height}}" style="display:{{ d.state }};height: {{d.footer_height}}px;">
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+
+  </div>
+</div>

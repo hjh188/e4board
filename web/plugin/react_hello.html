@@ -1,0 +1,29 @@
+<div id="root">
+</div>
+<!--
+How to deploy reactjs based app in board system, follow the react guide here: http://www.runoob.com/react/react-install.html
+
+* Create react development environment
+$ npm install -g cnpm --registry=https://registry.npm.taobao.org
+$ npm config set registry https://registry.npm.taobao.org
+
+$ cnpm install -g create-react-app
+$ create-react-app my-app
+$ cd my-app/
+
+* Generate my-app web resources
+$ npm run build // will generate build directory include web deployment resource(js/css/...)
+
+
+* Deploy web resources to Board plugin system:
+  1. react_hello.html // include the dom
+  2. react_hello.js // board entry, in which load the react web resource
+  3. react_hello_imp.js // copy from react build main js file
+  4. react_hello.css // copy from react build main css file
+
+* Configure board backend data:
+  1. Template: react_hello.html
+  2. Js Template: react_hello.js
+
+After the steps, the reactjs app will be deployed and show in board system
+-->

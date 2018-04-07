@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}EBoard Workspace{% endblock %}
+
+{% block pre_body_content %}
+  <div class="ui basic clearing segment" style="margin-top:-50px;">
+    <h2 class="ui left floated header">
+      <i class="dashboard icon"></i>
+      <div class="content">
+        Dashboard
+      </div>
+    </h2>
+    <!--<div class="right floated ui top right pointing dropdown circular icon button">
+      <i class="icon settings"></i>
+      <div class="menu">
+        <div class="item">Create Dashboard</div>
+        <div class="item">Find Dashboard</div>
+      </div>
+    </div>-->
+  </div>
+
+{% endblock %}
+
+{% block page_level_js %}
+  <script src="/web/js/dashboard.js"></script>
+{% endblock %}
+

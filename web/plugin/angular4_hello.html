@@ -1,0 +1,28 @@
+<app-root></app-root>
+<!--
+How to deploy angular4 based app in board system, the steps are basically the same as reactjs app 
+
+* Create angular4 development environment
+$ npm install -g cnpm --registry=https://registry.npm.taobao.org
+$ npm config set registry https://registry.npm.taobao.org
+
+$ cnpm install -g @angular/cli
+$ ng new hello-world
+$ cd hello-world
+
+* Generate my-app web resources
+$ ng build --prod --aot // will generate build directory include web deployment resource(js/css/...)
+
+
+* Deploy web resources to Board plugin system:
+  1. angular4_hello.html // include the dom
+  2. angular4_hello.js // board entry, in which load the angular4 web resource
+  3. angular4_hello_inline.bundle.js,angular4_hello_polyfills.bundle.js,angular4_hello_main.bundle.js // copy from angular4 build main js file
+  4. angular4_hello_styles.bundle.css // copy from angular4 build main css file
+
+* Configure board backend data:
+  1. Template: angular4_hello.html
+  2. Js Template: angular4_hello.js
+
+After the steps, the angular4 app will be deployed and show in board system
+-->

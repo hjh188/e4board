@@ -1,0 +1,345 @@
+html {
+  height: 100%;
+}
+
+body {
+  background-color: #FFFFFF;
+  height: 100%;
+}
+
+.ui.menu .item img.logo {
+  margin-right: 1.5em;
+}
+
+.ui.container {
+  width: 96% !important;
+}
+
+.main.container {
+  margin-top: 7em;
+  min-height: 550px;
+  width: 96% !important;
+}
+
+.wireframe {
+  margin-top: 2em;
+}
+
+.ui.footer.segment {
+  margin: 5em 0em 0em;
+  padding: 5em 0em;
+}
+
+img.logo {
+  margin-right: 0.5em !important;
+  width: 3.5em !important;
+}
+
+.wrapper {
+  min-height: 100%;
+  position: relative;
+}
+
+.footer {
+  box-sizing: border-box;
+  //position: absolute !important;
+  //bottom: 0;
+  margin: 50px auto 0 !important;
+  width: 100%;
+  height: 250px;
+  background: #f5f5f5 !important;
+}
+
+.ui.main.fixed.menu {
+  background: #222 !important;
+  height: 26px !important;
+  min-height: 22px !important;
+  border: none !important;
+}
+
+.ui.main.fixed.menu a {
+    max-height: 22px !important;
+}
+
+.ui.main.fixed.menu div.dropdown {
+    max-height: 22px !important;
+}
+
+.ui.main.fixed.menu .right.menu .lu_search.item {
+    max-width: 300px!important;
+}
+
+.ui.main.fixed.menu input {
+    max-height: 22px !important;
+}
+
+.ui.main.fixed.menu .search_index input {
+    max-height: 22px !important;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+    border-top-right-radius: .28571429rem !important;
+    border-bottom-right-radius: .28571429rem !important;
+    height: 22px !important;
+}
+
+.ui.main.fixed.menu img {
+    max-height: 22px !important;
+}
+
+.ui.main.fixed.menu div.app.dropdown > .menu {
+    max-height: 400px !important;
+    width: 250px !important;
+    overflow: hidden !important;
+}
+
+.ui.main.fixed.menu div.app.dropdown .scrolling.menu {
+    border: none !important;
+    -webkit-border-radius: 0px !important;
+    -moz-border-radius: 0px !important;
+    border-radius: 0px !important;
+    box-shadow: none !important;
+    max-height: 300px !important;
+}
+
+.ui.main.fixed.menu div.app.dropdown {
+    max-height: 26px !important;
+}
+
+.ui.green_one.empty.circular.label {
+    background-color: #21ba45!important;
+}
+
+.ui.green_two.empty.circular.label {
+    background-color: rgb(101, 166, 55) !important;
+}
+
+.ui.blue_one.empty.circular.label {
+    background-color: #2185d0!important;
+}
+
+.ui.blue_two.empty.circular.label {
+    background-color: rgb(83, 121, 175) !important;
+}
+
+.ui.red_one.empty.circular.label {
+    background-color: #db2828!important;
+}
+
+.ui.orange_one.empty.circular.label {
+    background-color: #f2711c!important;
+}
+
+.ui.yellow_one.empty.circular.label {
+    background-color: #fbbd08!important;
+}
+
+.ui.olive_one.empty.circular.label {
+    background-color: #b5cc18!important;
+}
+
+.ui.teal_one.empty.circular.label {
+    background-color: #00b5ad!important;
+}
+
+.ui.violet_one.empty.circular.label {
+    background-color: #6435c9!important;
+}
+
+.ui.purple_one.empty.circular.label {
+    background-color: #a333c8!important;
+}
+
+.ui.pink_one.empty.circular.label {
+    background-color: #e03997!important;
+}
+
+.ui.brown_one.empty.circular.label {
+    background-color: #a5673f!important;
+}
+
+.ui.grey_one.empty.circular.label {
+    background-color: #767676!important;
+}
+
+.ui.grey_two.empty.circular.label {
+    background-color: #3c444d!important;
+}
+
+.ui.black_one.empty.circular.label {
+    background-color: #1b1c1d!important;
+}
+
+
+.blue_one {
+    background-color: #2185d0!important;
+}
+
+.blue_two {
+    background-color: rgb(83, 121, 175) !important;
+}
+
+.red_one {
+    background-color: #db2828!important;
+}
+
+.orange_one {
+    background-color: #f2711c!important;
+}
+
+.yellow_one {
+    background-color: #fbbd08!important;
+}
+
+.olive_one {
+    background-color: #b5cc18!important;
+}
+
+.teal_one {
+    background-color: #00b5ad!important;
+}
+
+.violet_one {
+    background-color: #6435c9!important;
+}
+
+.purple_one {
+    background-color: #a333c8!important;
+}
+
+.pink_one {
+    background-color: #e03997!important;
+}
+
+.brown_one {
+    background-color: #a5673f!important;
+}
+
+.grey_one {
+    background-color: #767676!important;
+}
+
+.grey_two {
+    background-color: #3c444d!important;
+}
+
+.black_one {
+    background-color: #1b1c1d!important;
+}
+
+.green_one {
+    background-color: #21ba45!important;
+}
+
+.green_two {
+    background-color: rgb(101, 166, 55) !important;
+}
+
+.ui.main.fixed.menu div.app.dropdown {
+    color: #bbb;
+}
+
+.ui.main.fixed.menu .user_icon img.avatar.image {
+    max-height: 22px !important;
+    max-width: 22px !important;
+}
+
+.ui.main.fixed.menu .user_icon span {
+    color: #e6e6e6;
+}
+
+.ui.main.fixed.menu div.right.item {
+    padding-top: 12px !important;
+    padding-bottom: 13px !important;
+}
+
+.ui.main.fixed.menu a.item {
+    color: #bbb;
+}
+
+.ui.main.fixed.menu .item.source img {
+    margin-bottom: 0px !important;
+    margin-top: 0px !important;
+}
+
+.ui.submenu.fixed.menu {
+    top: 25px;
+    z-index: 50;
+    border: none !important;
+    //background: rgb(101, 166, 55) !important;
+    max-height: 40px !important;
+}
+
+.ui.submenu.fixed.menu a.item {
+    color: #fff;
+}
+
+.ui.submenu .item.active {
+    border-bottom: 3px solid rgb(101, 166, 55) !important;
+}
+
+#user_image_big {
+   height: 290px !important;
+   width: 290px !important;
+}
+
+#user_image_small {
+   height: 35px !important;
+   width: 35px !important;
+}
+
+.ui.avatar.image {
+    height: 15px !important;
+    width: 15px !important;
+}
+
+div.timeago {
+    color: rgba(0,0,0,.5) !important;
+    border: none !important;
+}
+
+div.timeago i {
+    padding-right:5px !important;
+    margin-right:0 !important;
+}
+
+img.wait {
+    max-width: 18px !important;
+    max-height: 18px !important;
+    padding-top: 5px !important;
+    padding-left: 9px !important;
+}
+
+input[type=search] {
+    //border: solid 1px #f2711c !important;
+}
+
+.search_mode.button {
+    width: 50px !important;
+}
+
+input[type=search]:focus {
+    //border: solid 1px #66CC75 !important;
+    //width: 200px !important;
+}
+
+.search_index.dropdown.input .scrolling.menu {
+    max-height: 500px !important;
+    position: absolute !important;
+}
+
+.search_index.dropdown.input .scrolling.menu div.header {
+    font-size: 1.0571429em !important;
+}
+
+.search_index.dropdown.input {
+    //max-width: 150px !important;
+}
+
+.search_index.dropdown.input .scrolling.menu div.item {
+    max-width: 250px !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+

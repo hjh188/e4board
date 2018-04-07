@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}User Profile{% endblock %}
+
+{% block page_level_css %}
+  <link href="/web/css/jquery.filer.css" type="text/css" rel="stylesheet" />
+  <link href="/web/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
+{% endblock %}
+
+{% block body_content %}
+  <div class="ui basic user_image modal">
+    <i class="close icon"></i>
+    <div class="header">
+      Upload Image
+    </div>
+    <div class="content">
+      <input type="file" name="image" id="image_input" multipe="multiple">
+    </div>
+  </div>
+
+  <div class="ui card">
+    <div class="blurring dimmable image">
+      <div class="ui dimmer">
+        <div class="content">
+          <div class="center">
+              <div class="ui inverted user_image {{ upload_image }} button">Upload Image</div>
+          </div>
+        </div>
+      </div>
+      <img src="{{ user_image_big }}" class="ui medium image" id="user_image_big">
+    </div>
+    <div class="content">
+        <a class="header">{{ display_name }}</a>
+      <div class="meta">
+        <span class="text">{{ bio }}</span>
+      </div>
+      <div class="description">
+        <table class="ui orange table">
+          </tbody>
+            <tr><td><I>Employee ID</I></td><td>{{ employee_id }}</td></tr>
+            <tr><td><I>Manager</I></td><td>{{ manager }}</td></tr>
+            <tr><td><I>Location</I></td><td>{{ location }}</td></tr>
+            <tr><td><I>Phone</I></td><td>{{ phone }}</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="extra content">
+        <a href="mailto:{{ email }}"><i class="mail icon"></i>{{ email }}</a>
+    </div>
+  </div>
+{% endblock %}
+
+{% block page_level_js %}
+  <script src="/web/js/jquery.filer.min.js"></script>
+  <script src="/web/js/user.js"></script>
+{% endblock %}
+

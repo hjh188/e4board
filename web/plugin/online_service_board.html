@@ -1,0 +1,95 @@
+<div class="ui {{ param.card_number }} cards" style="width:100%;height:100%;overflow-y:auto;">
+{% for d in data %}
+<a class="ui {{ d.color }} card" href="{{ d.url }}" target="{{ param.target }}">
+    <div class="content">
+      <i class="right floated {{ d.icon }} icon"></i>
+      <div class="header">{{ d.name }}</div>
+      <div class="description">
+        {{ d.description }}
+      </div>
+    </div>
+    <div class="extra content">
+    {% if d.total %}
+      <span class="left floated">
+        <div class="ui mini statistics">
+          <div class="blue statistic">
+            <div class="value">{{ d.total }}</div>
+            <div class="label">TOTAL</div>
+          </div>
+        </div>
+      </span>
+    {% endif %}
+    {% if d.run %}
+      <span class="left floated">
+        <div class="ui mini statistics">
+          <div class="green statistic">
+            <div class="value">{{ d.run }}</div>
+            <div class="label">RUN</div>
+          </div>
+        </div>
+      </span>
+    {% endif %}
+    {% if d.stop %}
+      <span class="left floated">
+        <div class="ui mini statistics">
+          <div class="orange statistic">
+            <div class="value">{{ d.stop }}</div>
+            <div class="label">STOP</div>
+          </div>
+        </div>
+      </span>
+    {% endif %}
+    {% if d.success %}
+      <span class="left floated">
+        <div class="ui mini statistics">
+          <div class="green statistic">
+            <div class="value">{{ d.success }}</div>
+            <div class="label">SUCCESS</div>
+          </div>
+        </div>
+      </span>
+    {% endif %}
+    {% if d.done %}
+      <span class="left floated">
+        <div class="ui mini statistics">
+          <div class="green statistic">
+            <div class="value">{{ d.done }}</div>
+            <div class="label">DONE</div>
+          </div>
+        </div>
+      </span>
+    {% endif %}
+    {% if d.failure %}
+      <span class="left floated">
+        <div class="ui mini statistics">
+          <div class="red statistic">
+            <div class="value">{{ d.failure }}</div>
+            <div class="label">FAILURE</div>
+          </div>
+        </div>
+      </span>
+    {% endif %}
+    {% if d.timeout %}
+      <span class="left floated">
+        <div class="ui mini statistics">
+          <div class="red statistic">
+            <div class="value">{{ d.timeout }}</div>
+            <div class="label">TIMEOUT</div>
+          </div>
+        </div>
+      </span>
+    {% endif %}
+    {% if d.pending %}
+      <span class="left floated">
+        <div class="ui mini statistics">
+          <div class="yellow statistic">
+            <div class="value">{{ d.pending }}</div>
+            <div class="label">PENDING</div>
+          </div>
+        </div>
+      </span>
+    {% endif %}
+    </div>
+  </a>
+{% endfor %}
+</div>

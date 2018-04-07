@@ -1,0 +1,26 @@
+{% if not data %}
+No matching item found.
+{% endif %}
+<div class="ui feed lu_container" style="height:100%;width:100%;">
+{% for d in data %}
+  <div class="event lu_item">
+    <div class="label">
+        <img src="{{ d.img }}" style="width:35px!important;height:35px!important;">
+    </div>
+    <div class="content">
+      <div class="summary">
+        <a class="user" href="{{ d.user_url }}">{{ d.created_by }}</a>
+        created {{ d.title }} <a href="{{ d.id_url|safe }}">{{ d.id }}</a>
+        <div class="date">
+          {{ d.created_at }}
+        </div>
+      </div>
+      <div class="meta">
+      </div>
+    </div>
+  </div>
+{% endfor %}
+{% if data %}
+<button class="more fluid ui button" data-limit="{{ param.limit }}" data-offset="{{ param.offset }}">Show more...</button>
+{% endif %}
+</div>
