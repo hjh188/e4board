@@ -263,6 +263,7 @@ class BoardViewSet(viewsets.LuModelViewSet):
                     _param.update({k: v})
 
             if board.process == '1':
+                lu_sql_db = _param.get('lu_sql_db', 'default')
                 if board.fixed_data == '1':
                     try:
                         _data = json.loads(board.search)
@@ -272,7 +273,8 @@ class BoardViewSet(viewsets.LuModelViewSet):
                         for key in item:
                             if item[key].startswith('lu_sql:'):
                                 item[key] = requests.post(self.conf.post_data_url,
-                                                          data={'lu_sql': item[key].split(':')[1]}).json()["data"][0].values()[0]
+                                                          data={'lu_sql': item[key].split(':')[1],
+                                                                'lu_sql_db': lu_sql_db}).json()["data"][0].values()[0]
 
                 else:
                     try:
@@ -280,7 +282,8 @@ class BoardViewSet(viewsets.LuModelViewSet):
                             board.search = board.search.format(**_param)
 
                         _data = requests.post(self.conf.post_data_url,
-                                              data={'lu_sql': board.search}).json()["data"]
+                                              data={'lu_sql': board.search,
+                                                    'lu_sql_db': lu_sql_db}).json()["data"]
                     except Exception, err:
                         _data = []
 
