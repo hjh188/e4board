@@ -25,4 +25,6 @@ class BoardConf(LuConf):
     # Generate the default SEARCH for the model by lu SQL injection
     sql_injection_map = {'get_board':'SELECT LU_RESPONSE_FIELD FROM eboard_board WHERE LU_SEARCH_CONDITION'}
 
+    sql_injection_allow = ['SELECT', '\(SELECT']
 
+    post_data_url = 'http://localhost:9572/eboard/board/boards/'

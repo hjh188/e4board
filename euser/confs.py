@@ -25,4 +25,5 @@ class UserConf(LuConf):
     # Generate the default SEARCH for the model by lu SQL injection
     sql_injection_map = {'get_user':'SELECT LU_RESPONSE_FIELD FROM euser_user WHERE LU_SEARCH_CONDITION'}
 
+    default_password = '123456'
 

@@ -25,6 +25,14 @@ class CustomerFileConf(LuConf):
     # Generate the default SEARCH for the model by lu SQL injection
     sql_injection_map = {'get_customerfile':'SELECT LU_RESPONSE_FIELD FROM efile_customerfile WHERE LU_SEARCH_CONDITION'}
 
+    enable_reversion_post = True
+    enable_reversion_put = True
+
+    # Customer file folder
+    customer_file_folder = 'customer_file'
+
+    enable_perm_delete_check = False
+
 
 class UserImageConf(LuConf):
     """
@@ -36,5 +44,13 @@ class UserImageConf(LuConf):
 
     # Generate the default SEARCH for the model by lu SQL injection
     sql_injection_map = {'get_userimage':'SELECT LU_RESPONSE_FIELD FROM efile_userimage WHERE LU_SEARCH_CONDITION'}
+
+    enable_reversion_post = True
+    enable_reversion_put = True
+
+    user_image_write_path = 'eweb/web/img/user/'
+    user_image_read_path = '/web/img/user/'
+
+    default_user_image = '/web/img/elliot.jpg'
 
 

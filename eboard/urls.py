@@ -23,6 +23,8 @@ urlpatterns = [
                                                       'delete': 'destroy'})),
     url(r'^boards/(?P<pk>[0-9]+)/history$', BoardViewSet.as_view({'get':'history'})),
 
+    url(r'^boards/save_personal_board$', BoardViewSet.as_view({'post':'save_personal_board'})),
+
 ]
 
 

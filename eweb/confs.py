@@ -25,4 +25,5 @@ class WebSourceConf(LuConf):
     # Generate the default SEARCH for the model by lu SQL injection
     sql_injection_map = {'get_websource':'SELECT LU_RESPONSE_FIELD FROM eweb_websource WHERE LU_SEARCH_CONDITION'}
 
+    base_resp_context = {}
 

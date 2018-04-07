@@ -23,6 +23,10 @@ urlpatterns = [
                                                       'delete': 'destroy'})),
     url(r'^websources/(?P<pk>[0-9]+)/history$', WebSourceViewSet.as_view({'get':'history'})),
 
+    url(r'^login', WebSourceViewSet.as_view({'get':'get_login', 'post':'post_login'})),
+    url(r'^password', WebSourceViewSet.as_view({'get':'get_change_password', 'post':'post_change_password'})),
+    url(r'^user', WebSourceViewSet.as_view({'get':'get_user'})),
+    url(r'^index', WebSourceViewSet.as_view({'get':'index'})),
 ]
 
 

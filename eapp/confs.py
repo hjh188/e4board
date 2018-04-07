@@ -25,4 +25,5 @@ class AppConf(LuConf):
     # Generate the default SEARCH for the model by lu SQL injection
     sql_injection_map = {'get_app':'SELECT LU_RESPONSE_FIELD FROM eapp_app WHERE LU_SEARCH_CONDITION'}
 
+    default_app_color = 'grey_two'
 

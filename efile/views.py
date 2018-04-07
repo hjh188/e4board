@@ -25,6 +25,17 @@ from lucommon import (
 from lucommon.response import LuResponse
 from lucommon.logger import lu_logger
 
+import os
+from django.core.files.storage import default_storage
+from django.core.files.base import ContentFile
+
+from fabric.api import (
+    local,
+    settings as fb_settings,
+)
+
+import uuid
+
 """
 Write less, do more
 
@@ -175,7 +186,32 @@ class UserImageViewSet(viewsets.LuModelViewSet):
         """
         HTTP POST item entry
         """
-        return super(UserImageViewSet, self).create(request, *args, **kwargs)
+        _image = request.FILES['image[]']
+
+        data = self.get_body_data(request)
+        data['img'] = request.data.get('image[]')
+        data['user_id'] = request.user.id
+        del data['image[]']
+        self.set_body_data(request, data)
+
+        base_image = os.path.join(self.conf.user_image_write_path, os.path.basename(str(_image)))
+        default_storage.save(base_image, ContentFile(_image.read()))
+
+        user_image = UserImage.objects.using(self.conf.db).filter(user_id = request.user.id)
+        if user_image:
+            user_image[0].img = data['img']
+            user_image[0].save()
+
+            data = {'id': user_image[0].id}
+
+            return LuResponse(status=200, data=data)
+        else:
+            resp = super(UserImageViewSet, self).create(request, *args, **kwargs)
+
+            if resp.status_code == 201:
+                os.remove(base_image)
+
+            return resp
 
     def update(self, request, *args, **kwargs):
         """
