@@ -343,3 +343,6 @@ input[type=search]:focus {
     text-overflow: ellipsis !important;
 }
 
+.ui.menu .dropdown.item .menu {
+    border-radius: .28571429rem .28571429rem .28571429rem .28571429rem !important;
+}

@@ -13,7 +13,7 @@ jQuery(document).ready(function(){
       }
     });
 
-  $(".ui.login.dropdown,.ui.source.dropdown,.ui.board.dropdown")
+  $(".ui.login.dropdown,.ui.source.dropdown,.ui.board.dropdown,.ui.question.dropdown,.ui.lu_message.dropdown")
     .dropdown({on: 'hover'});
 
   $(".ui.item.app.dropdown").dropdown({
