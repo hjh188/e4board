@@ -5,10 +5,12 @@ var board_execute = function(board){
 
     var ns = reval(param.namespace);
 
-    ns.board = board;
-    ns._board = _board;
-    ns.param = param;
-    ns.token = token;
+    if(ns){
+        ns.board = board;
+        ns._board = _board;
+        ns.param = param;
+        ns.token = token;
+    }
 
     if(!token.time_token){token.time_token='24 hour'};
 
@@ -121,13 +123,13 @@ var board_execute = function(board){
     $.ajax({
         url: board.attr('url'),
         type: 'POST',
-        data: {lu_sql: param.query, lu_sql_token: JSON.stringify(token), lu_sql_db: param.query_db},
+        data: {lu_sql: param.query, lu_sql_token: JSON.stringify(token)},
         success: function(result){
-            ns.data = result.data;
+            if(ns){ns.data = result.data;};
 
           var lu_draw_table = function(){
             var table = board.find(".table");
-            ns.table = table;
+            if(ns){ns.table = table;}
             //$(...).dataTable(), or
             //$(...).DataTable()
             //The difference between the two is that the first will return a jQuery object, while the second returns a DataTables API instance.
@@ -195,7 +197,7 @@ var board_execute = function(board){
                             xhr: function(){return _board.set_progress_callback();},
                             url: board.attr('url'),
                             type: 'POST',
-                            data: {lu_sql: param.query, lu_sql_token: JSON.stringify(token), lu_sql_db:param.query_db},
+                            data: {lu_sql: param.query, lu_sql_token: JSON.stringify(token)},
                             success: function(r){
                                 that.api().rows.add(r.data).draw();
 
@@ -383,7 +385,7 @@ var board_execute = function(board){
                 },
             });
 
-            ns.$table = $table;
+            if(ns){ns.$table = $table;};
 
             // table api
             var _api = $table.api();
