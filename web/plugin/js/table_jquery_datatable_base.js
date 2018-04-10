@@ -123,7 +123,7 @@ var board_execute = function(board){
     $.ajax({
         url: board.attr('url'),
         type: 'POST',
-        data: {lu_sql: param.query, lu_sql_token: JSON.stringify(token)},
+        data: {lu_sql: param.query, lu_sql_token: JSON.stringify(token), lu_sql_db: param.query_db},
         success: function(result){
             if(ns){ns.data = result.data;};
 
@@ -197,7 +197,7 @@ var board_execute = function(board){
                             xhr: function(){return _board.set_progress_callback();},
                             url: board.attr('url'),
                             type: 'POST',
-                            data: {lu_sql: param.query, lu_sql_token: JSON.stringify(token)},
+                            data: {lu_sql: param.query, lu_sql_token: JSON.stringify(token), lu_sql_db:param.query_db},
                             success: function(r){
                                 that.api().rows.add(r.data).draw();
 
