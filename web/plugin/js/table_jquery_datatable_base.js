@@ -134,26 +134,30 @@ var board_execute = function(board){
             var $table = table.dataTable({
                 dom: '<"ui grid"<"row"<"five wide column"l><"extend_toolbar six wide column"><"right aligned five wide column"f>><"row custom_column_filter"><"row dt-table"rt><"row"<"seven wide column"i><"right aligned nine wide column"p>>>',
                 destroy: true,
-                order: [[ 0, "asc" ]],// as rowsGroup affect, the order is reverse
+                order: param.order || [[ 0, "asc" ]],// as rowsGroup affect, the order is reverse
                 processing: true,
                 data: result.data,
                 //stateSave: true,
                 columns: columns,
                 // autoWidth need to set true, or fixed header will auto adjust width
                 autoWidth: true,
-                processing: true,
                 oSearch: {sSearch: lu_table_search},
                 language: {
                     "processing": '<img class="ui mini image" style="margin-left:40%;" src="/web/img/loader.gif"><div>Loading data...</div>',
                 },
-                lengthMenu: [[10, 20, 50, -1], [10, 20, 50, "All"]],
+                lengthMenu: param.lengthMenu || [[10, 20, 50, -1], [10, 20, 50, "All"]],
                 fixedHeader: {
                     header: true,
                     headerOffset: 65,
                     footer: true,
                 },
-                rowsGroup: [],// [2, 5, 7]
+                rowsGroup: param.rowsGroup || [],// [2, 5, 7]
                 deferRender: true,
+                bPaginate: param.bPaginate,
+                bLengthChange: param.bLengthChange,
+                bFilter: param.bFilter,
+                bInfo: param.bInfo,
+                bSort: param.bSort,
                 initComplete: function(settings, json){
                     // resolve the width auto adjust problem
                     //$(this).find('thead').addClass("ui sticky");
@@ -167,7 +171,11 @@ var board_execute = function(board){
                     if($(this).find("tfoot").length == 0){
                         $(this).append('<tfoot><tr></tr></tfoot>');
                         //$(this).find("thead").prepend('<tr class="custom_filter drag"></tr>');
-                        $(this).find("thead").append('<tr class="custom_filter search"></tr>');
+                        if(param.bFilter){
+                            $(this).find("thead").append('<tr class="custom_filter search"></tr>');
+                        }else{
+                            $(this).find("thead").append('<tr class="custom_filter search" style="display:none;"></tr>');
+                        }
                         var tf = $(this).find("thead tr.custom_filter");
                         var footer = $(this).find("tfoot tr");
                         this.api().columns().every(function (i) {
@@ -212,11 +220,15 @@ var board_execute = function(board){
                     });
 
                     // column resize
-                    lu_table_column_resizable.enable();
+                    if(param.bResize){
+                        lu_table_column_resizable.enable();
+                    };
 
                     // column drag
                     board.find('th.custom').each(function(){
-                        $(this).prepend('<div class="dragable_div" title="' + $(this).text() + '"></div>');
+                        if(param.bDrag){
+                            $(this).prepend('<div class="dragable_div" title="' + $(this).text() + '"></div>');
+                        };
                     });
                     //board.find('thead tr[role="row"]').sortable({
                     board.find('thead tr').sortable({
@@ -286,14 +298,18 @@ var board_execute = function(board){
 
                             lu_apply_column_filter($table, table_id, columns);
 
-                            lu_table_column_resizable.enable();
+                            if(param.bResize){
+                                lu_table_column_resizable.enable();
+                            };
 
                             // page to page
                             that.api().page(page_no).draw('page');
                         },
                         start: function(event, ui){
                             // disable resizable, as column dom updated
-                            lu_table_column_resizable.disable();
+                            if(param.bResize){
+                                lu_table_column_resizable.disable();
+                            };
 
                             $(ui.item).show();
                             that.api().clear().draw();
