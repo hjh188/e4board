@@ -121,11 +121,17 @@ var board_execute = function(board){
     _board.color = color;
 
     $.ajax({
-        url: board.attr('url'),
+        url: param.url || board.attr('url'),
         type: 'POST',
         data: {lu_sql: param.query, lu_sql_token: JSON.stringify(token), lu_sql_db: param.query_db},
         success: function(result){
-            if(ns){ns.data = result.data;};
+            var _data = result.data;
+            if(ns){
+                if(ns._board_table_data_preprocess_func){
+                    _data = ns._board_table_data_preprocess_func(_data);
+                }
+                ns.data = _data;
+            };
 
           var lu_draw_table = function(){
             var table = board.find(".table");
@@ -138,7 +144,7 @@ var board_execute = function(board){
                 destroy: true,
                 order: param.order || [[ 0, "asc" ]],// as rowsGroup affect, the order is reverse
                 processing: true,
-                data: result.data,
+                data: _data,
                 //stateSave: true,
                 columns: columns,
                 // autoWidth need to set true, or fixed header will auto adjust width
@@ -195,11 +201,18 @@ var board_execute = function(board){
                         $(that).find('tbody').empty().append('<tr><td colspan="100"><div class="ui segment"><div class="ui active inverted dimmer"><div class="ui text mini loader">Loading data...</div></div><p></p></div></td></tr>');
                         $.ajax({
                             xhr: function(){return _board.set_progress_callback();},
-                            url: board.attr('url'),
+                            url: param.url || board.attr('url'),
                             type: 'POST',
                             data: {lu_sql: param.query, lu_sql_token: JSON.stringify(token), lu_sql_db:param.query_db},
                             success: function(r){
-                                that.api().rows.add(r.data).draw();
+                                var _data = r.data;
+                                if(ns){
+                                    if(ns._board_table_data_preprocess_func){
+                                        _data = ns._board_table_data_preprocess_func(_data);
+                                    }
+                                    ns.data = _data;
+                                }
+                                that.api().rows.add(_data).draw();
 
                                 // page to page
                                 that.api().page(page_no).draw('page');
@@ -279,7 +292,7 @@ var board_execute = function(board){
                             // TODO
 
                             //redraw table without refresh data
-                            that.api().rows.add(result.data).draw();
+                            that.api().rows.add(_data).draw();
 
                             // full refresh board, need to do store data in server side before this action
                             //board.find('.floated.header i.refresh').trigger('dblclick');
@@ -329,6 +342,11 @@ var board_execute = function(board){
                             };
                         });
                     };
+
+                    // add init func callback, no need to map to column
+                    if(ns._board_table_init_func){
+                        ns._board_table_init_func(ns);
+                    };
                 },
                 rowCallback: function(row, data, dataIndex){
                     if(ns){
@@ -342,7 +360,9 @@ var board_execute = function(board){
                             });
                         });
 
-                        ns._board_table_row_func(row, data, dataIndex);
+                        if(ns._board_table_row_func){
+                            ns._board_table_row_func(row, data, dataIndex);
+                        };
                     };
                 },
                 fnDrawCallback: function(settings){
