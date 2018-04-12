@@ -56,20 +56,20 @@ perf_scheduler_pr_trigger_policy_table._board_table_row_func = function(row, dat
 };
 
 perf_scheduler_pr_trigger_policy_table._board_table_column_func_map = {
-        "Scheduler ID": function($td, row, data, dataIndex, self){
+        "Scheduler_ID_id": function($td, row, data, dataIndex, self){
             $td.addClass("scheduler_id");
             $td.html('<a class="ui olive circular label" style="line-height:2em;" name="' + data.policy_name + '" ph_id="' + data.ph_id + '">' + data.id + '</a>');
         },
-        "Policy Name": function($td, row, data, dataIndex, self){
+        "Policy_Name_policy_name": function($td, row, data, dataIndex, self){
             if(!data.policy_name.startsWith('Real-time-trigger') && !data.policy_name.startsWith('PR-trigger')){
                 $td.html('<a href="/eboard/web/perfscheduler?page=policy&lu_show=1&lu_search=' + data.policy_name.replace(/_/g, ' ') + '">' + data.policy_name + '</a>');
             };
         },
-        "Created At": function($td, row, data, dataIndex, self){
+        "Created_At_created_at": function($td, row, data, dataIndex, self){
             var ta = timeago().format(data.created_at);
             $td.html('<div class="ui basic label timeago" data-tooltip="' + data.created_at + '"><i class="wait icon"></i>' + ta + '</div>');
         },
-        "Run By": function($td, row, data, dataIndex, self){
+        "Run_By_created_by": function($td, row, data, dataIndex, self){
             var _user = data['created_by'];
             if(data['created_by'].length >= 10){
                 _user = data['created_by'].slice(0, 9) + '...';
@@ -77,27 +77,27 @@ perf_scheduler_pr_trigger_policy_table._board_table_column_func_map = {
             var created_by = '<a class="ui image label" href="/eboard/web/user/?username=' + data['created_by'] + '"><img src="/' + data['img'] + '">' + _user + '</a>';
             $td.html(created_by);
         },
-        "Progress": function($td, row, data, dataIndex, self){
+        "Progress_id": function($td, row, data, dataIndex, self){
             var progress_bar = '<div class="ui indicating small progress scheduler" scheduler_id="' + data.id + '"  data-value="-1" data-total="8" style="margin-top:3px;"><div class="bar"><div class="progress"></div></div></div>';
             var progress_pie = '<span class="sparkline scheduler" scheduler_id="' + data.id + '">...</span>';
             //var progress = '<div class="ui accordion" policy_name="' + data.policy_name + '"><div class="title" style="padding-bottom:0px;"><div class="ui grid"><div class="one wide column" style="padding-right:0px;"><i class="dropdown icon"></i></div><div class="ten wide column">' + progress_bar + '</div></div></div><div class="content" style="padding-top:0px"><div class="ui segment"><div class="ui active inverted dimmer"><div class="ui text tiny loader"></div></div><p></p></div></div></div>';
             var progress = '<div class="ui accordion" policy_name="' + data.policy_name + '"><div class="title" style="padding-bottom:0px;"><div class="ui grid"><div class="one wide column" style="padding-right:0px;"><i class="dropdown icon"></i></div><div class="nine wide column">' + progress_bar + '</div><div class="one wide column">' + progress_pie + '</div></div></div><div class="content" style="padding-top:0px"><div class="ui segment"><div class="ui active inverted dimmer"><div class="ui text tiny loader"></div></div><p></p></div></div></div>';
             $td.html(progress);
         },
-        "Status": function($td, row, data, dataIndex, self){
+        "Status_status": function($td, row, data, dataIndex, self){
             var status = data.status;
             var color = self._board.color;
             if(status == 'created'){status = 'pending'};
             $td.html('<div class="ui status tiny ' + color[status]  + ' label">' + status + '</div>');
         },
-        "Action": function($td, row, data, dataIndex, self){
+        "Action_id": function($td, row, data, dataIndex, self){
             if(["running", "created"].indexOf(data.status) >=0){
                 $td.html('<a class="ui label cancel" scheduler_id="' + data.id + '" data-tooltip="double click">Cancel<i class="red delete icon"></i></a>');
             }else{
                 $td.html('');
             }
         },
-        "Link": function($td, row, data, dataIndex, self){
+        "Link_id": function($td, row, data, dataIndex, self){
             var link = '';
             var token = self._board.get_token();
 
@@ -110,7 +110,7 @@ perf_scheduler_pr_trigger_policy_table._board_table_column_func_map = {
 };
 
 perf_scheduler_pr_trigger_policy_table._board_table_init_func_map = {
-    "Progress": function(self){
+    "Progress_id": function(self){
         // get scheduler progress
         var id_list = Enumerable.From(self.data).Select(function(x){return x.id}).ToArray();
         $.each(id_list, function(i, item){
@@ -133,7 +133,7 @@ perf_scheduler_pr_trigger_policy_table._board_table_init_func_map = {
 };
 
 perf_scheduler_pr_trigger_policy_table._board_table_draw_func_map = {
-    "Scheduler ID": function(self){
+    "Scheduler_ID_id": function(self){
         self.table.find(".scheduler_id").click(function(){
             /*var id = $(this).find("a").text();
             var policy_name = $(this).find("a").attr("name");
@@ -144,7 +144,7 @@ perf_scheduler_pr_trigger_policy_table._board_table_draw_func_map = {
             window.location.href = '/eboard/web/perfscheduler?page=job&policy_name=PR-trigger&ph_id=' + ph_id + '&scroll_to=testscheduler_table&time_token=' + self.token.time_token;
         });
     },
-    "Action": function(self){
+    "Action_id": function(self){
         // action cancel
         self.table.find("a.cancel").dblclick(function(){
             var $a = $(this);
@@ -169,7 +169,7 @@ perf_scheduler_pr_trigger_policy_table._board_table_draw_func_map = {
             });
         });
     },
-    "Progress": function(self){
+    "Progress_id": function(self){
         self.set_scheduler_progress();
 
         // init accordion

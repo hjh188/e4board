@@ -336,7 +336,10 @@ var board_execute = function(board){
                     if(ns){
                         $.each(columns, function(i, column){
                             // init order by columns
-                            var f = ns._board_table_init_func_map[column.title];
+                            var l = column.title.split(' ');
+                            l.push(column.data);
+                            var n = l.join('_')
+                            var f = ns._board_table_init_func_map[n];
                             if(f){
                                 f(ns);
                             };
@@ -354,6 +357,11 @@ var board_execute = function(board){
                             var $td = $('td.custom:eq(' + i + ')', row);
 
                             $.each(ns._board_table_column_func_map, function(c, f){
+                                // Important change:
+                                // _board_table_*_map function will map class to decorator,
+                                // also don't use title, as title may be the same
+                                // rename class Name in:
+                                // "_".join(column.title) + "_" + column.data
                                 if($td.hasClass(c)){
                                     f($td, row, data, dataIndex, ns);
                                 };
@@ -396,7 +404,10 @@ var board_execute = function(board){
                     if(ns){
                         $.each(columns, function(i, column){
                             // init order by columns
-                            var f = ns._board_table_draw_func_map[column.title];
+                            var l = column.title.split(' ');
+                            l.push(column.data);
+                            var n = l.join('_')
+                            var f = ns._board_table_draw_func_map[n];
                             if(f){
                                 f(ns);
                             };
