@@ -311,7 +311,7 @@ var board_execute = function(board){
                                 $source.insertAfter($prev);
                             }
 
-                            lu_apply_column_filter($table, table_id, columns);
+                            if(param.bFilter){lu_apply_column_filter($table, table_id, columns);};
 
                             if(param.bResize){
                                 lu_table_column_resizable.enable();
@@ -418,7 +418,8 @@ var board_execute = function(board){
             });
             
             // apply column filter
-            lu_apply_column_filter($table, sTableId, columns);
+            // enable apply_column_filter will caused rowCallback multiple times
+            if(param.bFilter){lu_apply_column_filter($table, sTableId, columns);};
 
             // add column show/hidden filter TODO
             board.find('.extend_toolbar').append('<div></div>');
