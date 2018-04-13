@@ -195,6 +195,7 @@ var board_execute = function(board){
                     };
 
                     // rewrite refresh but keep dblclick for full refresh(load data and refresh)
+                    if(!param.rewrite_click){
                     board.find('i.refresh').unbind('click');
                     board.find('i.refresh').click(function(){
                         that.api().clear().draw();
@@ -226,6 +227,7 @@ var board_execute = function(board){
                             },
                          });
                     });
+                    };
 
                     // event for input change
                     $(".dataTables_filter input").keyup(function(){
