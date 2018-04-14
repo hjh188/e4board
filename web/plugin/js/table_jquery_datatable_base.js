@@ -120,6 +120,9 @@ var board_execute = function(board){
     var color = {'done': 'green', 'success': 'green', 'failure': 'red', 'exception': 'red', 'erroring': 'orange', 'error': 'red', 'running': 'blue', 'created': 'yellow', 'pending': 'orange', 'aborted': 'red', 'timeout': 'red', 'canceled': 'grey'};
     _board.color = color;
 
+    // remove duplicate fixedheader table before initialize
+    $("table.fixedHeader-floating").remove();
+
     $.ajax({
         url: param.url || board.attr('url'),
         type: 'POST',
@@ -155,9 +158,9 @@ var board_execute = function(board){
                 },
                 lengthMenu: param.lengthMenu || [[10, 20, 50, -1], [10, 20, 50, "All"]],
                 fixedHeader: {
-                    header: true,
+                    header: param.fixedHeader_header || false,
                     headerOffset: 65,
-                    footer: true,
+                    footer: param.fixedHeader_footer || false,
                 },
                 rowsGroup: param.rowsGroup || [],// [2, 5, 7]
                 deferRender: true,
