@@ -162,7 +162,7 @@ var board_execute = function(board){
                     headerOffset: 65,
                     footer: param.fixedHeader_footer || false,
                 },
-                rowsGroup: param.rowsGroup || [],// [2, 5, 7]
+                //rowsGroup: param.rowsGroup || [],// [2, 5, 7]
                 deferRender: true,
                 bPaginate: param.bPaginate,
                 bLengthChange: param.bLengthChange,
