@@ -1,0 +1,17 @@
+<div id="terminal"></div>
+<!--
+Integrate wetty into board
+
+* Start wetty service on backend:
+node app.js -p 3000 --sshhost=HOST --sshport=PORT --sshuser=USER --sshauth=publickey
+
+* nginx config
+		location ^~ /wetty/socket.io/ {
+		    proxy_pass http://0.0.0.0:3000;
+			proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		    proxy_set_header Host $host;
+			proxy_set_header X-Real-IP $remote_addr;
+		}
+
+* create board config in eboard
+-->
